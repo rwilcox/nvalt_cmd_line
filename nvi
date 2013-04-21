@@ -1,0 +1,27 @@
+#!/bin/env zsh
+
+# An interactive picker to select an item in your NVAlt files
+#
+# The first parameter to this script will the (partial) file name you want to locate
+# The second parameter is the command you want to run, which will receieve the selected
+# file as a parameter
+#
+# REQUIRES the dialog Unix utility. `port install dialog` or <http://invisible-island.net/dialog/dialog.html>
+# to install
+
+OUTPUT=''
+for line in  ~/Dropbox/'Application Support'/'Notational Data'/*$1*; do
+	OUTPUT="$OUTPUT `basename $line` '$line'"
+done
+
+echo $OUTPUT | xargs dialog --title "Dialog menu box" --menu "Choose one of the following or press <Cancel> to exit" 11 100 3 2>/tmp/dialog.ans
+
+if [ $? = 1 ]; then
+   rm -f /tmp/dialog.ans
+   clear
+   exit 0
+fi
+
+SELECTION="$(</tmp/dialog.ans)"
+
+`$2 ~/Dropbox/'Application Support'/'Notational Data'/$SELECTION`

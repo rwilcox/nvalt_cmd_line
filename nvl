@@ -1,0 +1,8 @@
+#!/usr/bin/env zsh
+
+# Given a text string, finds all notational velocity text files that start with
+# that name and run them through less
+#
+# (where you can navigate them with :n and :p for next and previous file)
+
+nvfq $1 | xargs less

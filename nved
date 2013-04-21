@@ -1,0 +1,3 @@
+#!/bin/env zsh
+
+nve $1 | xargs $2

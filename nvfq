@@ -1,0 +1,19 @@
+#!/usr/bin/env zsh
+
+# nvfq returns a list of QUOTED file paths whose name contains $1
+#
+# This script is written so you can query your NVAlt file name list and
+# pass those files to a program using xargs. See `nvl` for an example
+#
+# Q: "Why can't we just parse the output of nvf?"
+# A: Because <http://mywiki.wooledge.org/ParsingLs>
+#    TL; DR: repeating the glob in the IN construct here gives us
+#            file objects to iterate over instead of white space delimited
+#            sections
+
+TARGET_FILES_ESCAPED=''
+for line in ~/Dropbox/'Application Support'/'Notational Data'/*$1*; do
+	TARGET_FILES_ESCAPED="$TARGET_FILES_ESCAPED ${(q)line}\n"
+done;
+
+echo $TARGET_FILES_ESCAPED

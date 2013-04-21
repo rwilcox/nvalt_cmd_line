@@ -1,0 +1,8 @@
+#!/bin/zsh
+
+# Given a text string, lists all notational velocity files with that name
+#
+# NOTE: if you're using this as part of a shell script you may want to consider
+# nvfq, the quoted version of this script
+
+ls -d ~/Dropbox/'Application Support'/'Notational Data'/*$1*
